@@ -31,7 +31,7 @@ public class Ms_game_GUI extends MS_game_Adapter{
     while(!k) {
       try {
         int s = Integer.parseInt(JOptionPane.showInputDialog("Input the desired board size\n (lenght of side)"));
-        if (s < 4 || s > 60) {
+        if (s < 4 || s > 30) {
           JOptionPane.showMessageDialog(frame, "Thats not a resonable value try again");
         } else {
           k = true;
