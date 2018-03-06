@@ -313,7 +313,14 @@
       <option name="project" value="LOCAL" />
       <updated>1520358498167</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="first new">
+      <created>1520360995784</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1520360995784</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -412,7 +419,8 @@
     </ignored-roots>
     <MESSAGE value="#1 Test" />
     <MESSAGE value="board size limit = 30" />
-    <option name="LAST_COMMIT_MESSAGE" value="board size limit = 30" />
+    <MESSAGE value="first new" />
+    <option name="LAST_COMMIT_MESSAGE" value="first new" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
