@@ -105,4 +105,8 @@ public class Board{
     }
     else return openField(i,j);
   }
+
+  public void setPosVisi(int x,int y) {
+    this.posVisi[x][y] = 0;
+  }
 }

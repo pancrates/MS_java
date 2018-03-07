@@ -12,6 +12,7 @@ public class Minesweper{
     }
     else if(Integer.parseInt(args[0])==2){
       Interface_Ms_game g = new Ms_game_GUI();
+
     }
     else{
       Interface_Ms_game g = new Ms_game_CL();

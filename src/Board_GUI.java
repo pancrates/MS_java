@@ -13,6 +13,7 @@ public class Board_GUI extends Board {
   JPanel boardContainer;
   JPanel boardgrid;
   JButton[][] gridButtons;
+  Ms_game_GUI g;
   int state=0;
 
   /////////////////////////////////
@@ -27,14 +28,10 @@ public class Board_GUI extends Board {
   }
 */
   ////////////////////////////////
-  public Board_GUI() {
-    super();
-    formBoardDisplay();
 
-  }
-
-  public Board_GUI(int size, int mines) {
+  public Board_GUI(Ms_game_GUI parent, int size, int mines) {
     super(size, mines);
+    g=parent;
     formBoardDisplay();
   }
 
@@ -138,7 +135,7 @@ public class Board_GUI extends Board {
               }
             }
             JOptionPane.showMessageDialog(boardgrid, "You Lost");
-            System.exit(0);
+            g.replay();
           }
           else{
             bc.setText(""+getposValue(x,y));
@@ -152,9 +149,9 @@ public class Board_GUI extends Board {
           JOptionPane.showMessageDialog(boardgrid, "ERROR INVALID STATE ON LEFT CLICK" );
         }
         if(all_clear()){
+          setPosVisi(x,y);
           JOptionPane.showMessageDialog(boardgrid, "Congrats you won");
-          System.exit(0);
-
+          g.replay();
         }
 
       }
