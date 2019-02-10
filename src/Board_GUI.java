@@ -13,6 +13,7 @@ public class Board_GUI extends Board {
   JPanel boardContainer;
   JPanel boardgrid;
   JButton[][] gridButtons;
+  Ms_game_GUI g;
   int state=0;
 
   /////////////////////////////////
@@ -27,14 +28,10 @@ public class Board_GUI extends Board {
   }
 */
   ////////////////////////////////
-  public Board_GUI() {
-    super();
-    formBoardDisplay();
 
-  }
-
-  public Board_GUI(int size, int mines) {
+  public Board_GUI(Ms_game_GUI parent, int size, int mines) {
     super(size, mines);
+    g=parent;
     formBoardDisplay();
   }
 
@@ -69,32 +66,30 @@ public class Board_GUI extends Board {
     public void flod_fill_GUI(int x,int y){
       int val =getposValue(x,y);
 
-      if(val==0){
-        if(validIndex(x+1)&&validIndex(y)) {
-          gridButtons[x+1][y].dispatchEvent(new MouseEvent(gridButtons[x+1][y], MouseEvent.MOUSE_CLICKED, System.currentTimeMillis(), 0, 0, 0, 1, false, 1));
+        if(validIndex(x + 1) && validIndex(y) && (getposVisi(x + 1, y) != 1)) {
+        gridButtons[x+1][y].dispatchEvent(new MouseEvent(gridButtons[x+1][y], MouseEvent.MOUSE_CLICKED, System.currentTimeMillis(), 0, 0, 0, 1, false, 1));
         }
-        if(validIndex(x-1)&&validIndex(y)) {
+        if(validIndex(x-1)&&validIndex(y)&& (getposVisi(x - 1, y) != 1)) {
           gridButtons[x - 1][y].dispatchEvent(new MouseEvent(gridButtons[x - 1][y], MouseEvent.MOUSE_CLICKED, System.currentTimeMillis(), 0, 10, 10, 1, false, 1));
         }
-        if(validIndex(x)&&validIndex(y+1)) {
+        if(validIndex(x)&&validIndex(y+1)&& (getposVisi(x, y+1) != 1)) {
           gridButtons[x][y+1].dispatchEvent(new MouseEvent(gridButtons[x][y+1], MouseEvent.MOUSE_CLICKED, System.currentTimeMillis(), 0, 10, 10, 1, false, 1));
         }
-        if(validIndex(x)&&validIndex(y-1)) {
+        if(validIndex(x)&&validIndex(y-1)&& (getposVisi(x , y-1) != 1)) {
           gridButtons[x][y-1].dispatchEvent(new MouseEvent(gridButtons[x][y-1], MouseEvent.MOUSE_CLICKED, System.currentTimeMillis(), 0, 10, 10, 1, false, 1));
         }
-        if(validIndex(x+1)&&validIndex(y+1)) {
+        if(validIndex(x+1)&&validIndex(y+1)&& (getposVisi(x + 1, y+1) != 1)) {
           gridButtons[x + 1][y+1].dispatchEvent(new MouseEvent(gridButtons[x + 1][y+1], MouseEvent.MOUSE_CLICKED, System.currentTimeMillis(), 0, 10, 10, 1, false, 1));
         }
-        if(validIndex(x+1)&&validIndex(y-1)) {
+        if(validIndex(x+1)&&validIndex(y-1)&& (getposVisi(x + 1, y-1) != 1)) {
           gridButtons[x + 1][y-1].dispatchEvent(new MouseEvent(gridButtons[x + 1][y-1], MouseEvent.MOUSE_CLICKED, System.currentTimeMillis(), 0, 10, 10, 1, false, 1));
         }
-        if(validIndex(x-1)&&validIndex(y+1)) {
+        if(validIndex(x-1)&&validIndex(y+1)&& (getposVisi(x - 1, y+1) != 1)) {
           gridButtons[x - 1][y+1].dispatchEvent(new MouseEvent(gridButtons[x - 1][y+1], MouseEvent.MOUSE_CLICKED, System.currentTimeMillis(), 0, 10, 10, 1, false, 1));
         }
-        if(validIndex(x-1)&&validIndex(y-1)) {
+        if(validIndex(x-1)&&validIndex(y-1)&& (getposVisi(x - 1, y-1) != 1)) {
           gridButtons[x - 1][y-1].dispatchEvent(new MouseEvent(gridButtons[x - 1][y-1], MouseEvent.MOUSE_CLICKED, System.currentTimeMillis(), 0, 10, 10, 1, false, 1));
         }
-      }
     }
 
     String tempFormat = "State %d \n Position (%d,%d)";
@@ -140,12 +135,11 @@ public class Board_GUI extends Board {
               }
             }
             JOptionPane.showMessageDialog(boardgrid, "You Lost");
-            System.exit(0);
+            g.replay();
           }
           else{
             bc.setText(""+getposValue(x,y));
-            flod_fill_GUI(x,y);
-
+            if(getposValue(x,y)==0) flod_fill_GUI(x,y);
           }
         }
         else if(state==1){
@@ -155,9 +149,9 @@ public class Board_GUI extends Board {
           JOptionPane.showMessageDialog(boardgrid, "ERROR INVALID STATE ON LEFT CLICK" );
         }
         if(all_clear()){
+          setPosVisi(x,y);
           JOptionPane.showMessageDialog(boardgrid, "Congrats you won");
-          System.exit(0);
-
+          g.replay();
         }
 
       }
