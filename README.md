@@ -1,4 +1,6 @@
-# MS_java
+#### MS_java
 
+- Simple Minesweeper implemented in java Swing 
+- Can be played on various board sizes and difficulties
+- Available through both command line and GUI interface 
 
-Minesweeper with gui and shell display.
